@@ -66,7 +66,7 @@ while True:
          
             uusi_valinta=input("Sanaa ei löytynyt. Haluatko lisätä sanan sanakirjaan (k/e)? ").lower().strip()
             if uusi_valinta=="k" :
-                uusi_selitys=input("Anna selitys hakusanalle\033[1m " + hakusana + "\033[0m: ")
+                uusi_selitys=input("Anna selitys hakusanalle\033[1m " + hakusana + "\033[0m: ").lower()
                 rivit['sanat'].append(({'sana': hakusana, 'selitys': uusi_selitys}))
                 # sortataan sanakirjan rivit hakusanan mukaan
                 rivit['sanat'] = sorted(rivit['sanat'], key=lambda k: k['sana'], reverse=False)
