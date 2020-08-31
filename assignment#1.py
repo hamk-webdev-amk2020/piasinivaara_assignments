@@ -25,8 +25,8 @@ except Exception:
 
     with open('sanakirja3.txt', 'w') as tiedosto:
         json.dump(sorted_data, tiedosto)
+    
     tiedosto.close()
-
 
 while True:
     print ("\nSanakirja: ")
@@ -34,6 +34,7 @@ while True:
     print ("(2) Näytä sanakirjan sisältö ")
     print ("(3) Poistu ohjelmasta")
     valinta = input("Valitse toiminto: ")
+    valinta=valinta.strip()
 
     if valinta=="2":
         print("Sanakirjan sisältö on:\n")
@@ -45,12 +46,12 @@ while True:
                 print('')
         tiedosto.close()
 
-    if valinta=="3": 
+    elif valinta=="3": 
         print("Poistuit sanakirjasta. Tervetuloa uudelleen!")
         break
 
-    if valinta=="1":
-        hakusana=input("Anna hakusana: ")
+    elif valinta=="1":
+        hakusana=input("Anna hakusana: ").lower().strip()
         with open('sanakirja3.txt') as tiedosto:
             rivit = json.load(tiedosto)
             loytyiko=False
@@ -63,7 +64,7 @@ while True:
                 
         if loytyiko == False: # ei löytynyt sanakirjasta
          
-            uusi_valinta=input("Sanaa ei löydy sanakirjasta. Haluatko lisätä sanan sanakirjaan (k/e)? ")
+            uusi_valinta=input("Sanaa ei löytynyt. Haluatko lisätä sanan sanakirjaan (k/e)? ").lower().strip()
             if uusi_valinta=="k" :
                 uusi_selitys=input("Anna selitys hakusanalle\033[1m " + hakusana + "\033[0m: ")
                 rivit['sanat'].append(({'sana': hakusana, 'selitys': uusi_selitys}))
@@ -75,6 +76,7 @@ while True:
                     print("Uusi sana on lisätty onnistuneesti sanakirjaan.")
 
         tiedosto.close()
+    else: print("Tuntematon valinta, yritä uudelleen!")
 
 
 
