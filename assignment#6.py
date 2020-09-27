@@ -13,7 +13,7 @@ def tarkistusmerkki_OK(syntymaaika, yksilonumero, tarkistus):
     
     jjaannos = int(syntymaaika + yksilonumero) % 31
     if not tarkistusmerkki[jjaannos] == tarkistus.upper():
-        print ("Antamasi henkilötunnus on virheellinen. Tarkistusmerkki ei täsmää.", tarkistusmerkki[jjaannos],tarkistus)
+        print ("Antamasi henkilötunnus on virheellinen. Tarkistusmerkki ei täsmää.")
         return False
 
     return True
@@ -75,23 +75,25 @@ def main():
     sukupuoli = sotu[9:10]
     tarkistus = sotu[10:11]
 
-    # tarkistetaan että annettu syntymäaika on oikeaa muotoa, tulostetaan syntymäaika
-    saika=syntymaaika_OK(syntymaaika, valimerkki)
-    if saika==False: return(0)
-    else: print("Henkilötunnuksen omistajan syntymäaika on",saika)
-
     #tarkistetaan yksilönumeron oikeellisuus
     if not yksilonumero.isnumeric(): 
         print("Henkilötunnus on väärää muotoa. Välimerkin jälkeiset 3 merkkiä tulee olla numeroita.")
         return(0)
+
+    #lasketaan onko tarkistumerkki ok
+    if not tarkistusmerkki_OK(syntymaaika, yksilonumero, tarkistus): return(0)
+
+    # tarkistetaan että annettu syntymäaika on oikeaa muotoa, tulostetaan syntymäaika
+    saika=syntymaaika_OK(syntymaaika, valimerkki)
+    if saika==False: return(0)
+    else: print("Henkilötunnuksen omistajan syntymäaika on",saika)
 
     # tulostetaan henkilön sukupuoli
     jakojaannos = int(sukupuoli) % 2
     if jakojaannos==0: print("Henkilö on nainen")
     else: print("Henkilö on mies")
 
-    #lasketaan onko tarkistumerkki ok
-    if not tarkistusmerkki_OK(syntymaaika, yksilonumero, tarkistus): return(0)
+
 
 
 if __name__ == "__main__":
