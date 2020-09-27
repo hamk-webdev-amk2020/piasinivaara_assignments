@@ -16,11 +16,12 @@ Python assingment #2 - some math of input string
   The program will then calculate the sum, mean and median of the inputted values in 1-digit precision
 
 Python assingment #3 - copy file from url to local path
-------------------------------------------------
+-------------------------------------------------------
   
   A program, which asks URL from the user. If the URL can be opened, it writes the URL contents into a local file path defined by the user.
     
-    
+Python assignment #6 - Finnish henkilötunnus validation
+-------------------------------------------------------
     
  
  
