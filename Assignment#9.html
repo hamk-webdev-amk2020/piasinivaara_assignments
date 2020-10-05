@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Pia's Assingment#9</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        h1 {
+
+            font-size: 1em;
+
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #666;
+            padding: 15px;
+            text-align: center;
+            font-size: 35px;
+            color: white;
+        }
+
+        /* Create two columns/boxes that floats next to each other */
+        nav {
+            float: left;
+            width: 20%;
+
+            background: #fff;
+            padding: 20px;
+        }
+
+        /* Style the list inside the menu */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        article {
+            float: left;
+            padding: 20px;
+            width: 80%;
+            background-color: #fff;
+        }
+
+        /* Clear floats after the columns */
+        section:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: #666;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+        @media (max-width: 600px) {
+
+            nav,
+            article {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+    <script>
+
+        function handleSubmit(event) {
+            event.preventDefault()
+            return 0
+        }
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function checkPassword(str) {
+            const result = /\w*[-_.,]*/.test(str)
+
+            if (!result || str.length > 30 || str.length < 8) {
+                window.alert("Password is not in correct format.")
+                return false
+            }
+
+            // passoword field match to each other
+            if (document.getElementById("password1").value != document.getElementById("password2").value) {
+                window.alert("Password fields do not match.");
+                return false;
+            }
+            return true;
+        }
+
+        function checkForm(form) {
+            var output_text = "";
+
+            document.getElementById("output").innerHTML = output_text;
+
+            var str = document.getElementById("password1").value;
+            if (str > "") {
+
+                if (!checkPassword(str)) {
+
+                    return false
+                }
+            }
+
+            // print out all form elements to 'p' element
+            var elements = document.getElementById("myform").elements;
+
+            for (let element of elements) {
+                if ( element.name === "Gender" || element.name === "Interests") {
+                    if (element.checked) {
+                        output_text += element.name + ": " + element.value + "<br>";
+                    }
+                }
+
+                else if (element.value.length > 0) {
+                    output_text += element.name + ": " + element.value + "<br>";
+                }
+
+
+
+            }
+
+            document.getElementById("output").innerHTML = output_text;
+
+        } 
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Pia's Assignment#9</h1>
+    </header>
+
+    <section>
+        <nav>
+
+        </nav>
+
+        <article>
+
+            <form id="myform" onsubmit="handleSubmit(event)">
+                <p>
+                    <label for="text">Name*:</label><br>
+                    <input type="text" class="form-control" id="Name" name="Name" required>
+                </p>
+                <p>
+                    Gender:<br>
+                    <label><input type="radio" name="Gender" value="Female">Female</label><br>
+
+                    <label><input type="radio" name="Gender" value="Man">Man</label><br>
+
+                    <label><input type="radio" name="Gender" Value="Other">Other</label>
+                </p>
+
+                Interests:<br>
+
+                <label><input type="checkbox" value="Dance" id="Interests" name="Interests">Dance</label><br>
+
+                <label><input type="checkbox" value="Theatre" id="Interests" name="Interests">Theatre</label><br>
+
+                <label><input type="checkbox" value="Musicals" id="Interests" name="Interests">Musicals</label><br>
+
+                <label><input type="checkbox" value="Concerts" id="Interests" name="Interests">Concerts</label><br>
+                </p>
+                <p>
+                    <label for="password1">Password:</label><br>
+                    <input type="password" class="form-control" id="password1" name="password1"><br>
+                    <label for="password2">Confirm password:</label><br>
+                    <input type="password" class="form-control" id="password2" name="password2">
+                </p>
+                <p>
+
+                    <label for="favcolor">Select your favorite color:</label>&nbsp;
+                    <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+                </p>
+                <p>
+                    <label for="date">Date:</label><br>
+                    <input type="date" class="form-control" id="date" name="date"><br><br>
+
+                    <label for="time">Time:</label><br>
+                    <input type="time" class="form-control" id="time" name="time">
+                </p>
+                <p>
+                    <label for="length">The length of your dinner table (cm):</label><br>
+                    <input type="number" class="form-control" id="length" name="length" size="30" min="0" max="300">
+                </p>
+                <p>
+                    <label for="email">Email address*:</label><br>
+                    <input type="email" class="form-control" id="email" name="email" size="30" required>
+                </p>
+
+                <p>
+                    Select the amount you are willing to pay from lunch:<br>
+                    <input type="range" min="0" max="100" step="5" value="50" class="slider" id="myRange"
+                        name="range"><br>
+                    Value: <span id="demo"></span>&nbsp;EUR
+
+                    <script>
+                        var slider = document.getElementById("myRange");
+                        var output = document.getElementById("demo");
+                        output.innerHTML = slider.value;
+
+                        slider.oninput = function () {
+                            output.innerHTML = this.value;
+                        }
+                    </script>
+                </p>
+                <!--<p>
+                    <label for="search">Search with Google:</label><br>
+                    <input type="search" class="form-control" id="search" name="search" placeholder="Search">
+                </p-->
+                <p>
+                    <label for="tel">Tel:</label><br>
+                    <input type="tel" class="form-control" id="tel" name="tel">
+                </p>
+                <p>
+                    <label for="url">Homepage url:</label><br>
+                    <input type="url" class="form-control" id="url" name="url">
+                </p>
+                <p>
+                    <label for="cars">Choose a price car (FREE):</label><br>
+                    <select id="cars" name="cars">
+                        <option value="">Select your car:</option>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="comment">Message:</label><br>
+                    <textarea class="form-control" rows="5" id="message" name="message"></textarea>
+                </p>
+
+                <p>
+                    <input type="submit" onclick="checkForm(this);" value="Submit" Id="button" name="button">
+                </p>
+
+            </form>
+
+            <br>
+            <output id="output"></output>
+
+
+
+
+
+
+
+
+        </article>
+    </section>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+
+</body>
+
+</html>
