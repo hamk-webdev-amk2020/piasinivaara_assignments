@@ -25,6 +25,9 @@ Python assignment #6 - Finnish henkilötunnus validation
 
 JavaScript assignment #9 - form validation
 ------------------------------------------
+
+JavaScript assignment #10 - Canvas - stickman
+---------------------------------------------
     
  
  
