@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Pia's Assingment#10</title>
     <meta charset="utf-8">
@@ -34,7 +35,7 @@
             }
             ctx.beginPath();
 
-            var grd = ctx.createLinearGradient(50,60, 0, 80);
+            var grd = ctx.createLinearGradient(50, 60, 0, 80);
             grd.addColorStop(0, "blue");
             grd.addColorStop(1, "green");
             ctx.fillStyle = grd;
@@ -58,7 +59,15 @@
             ctx.beginPath();
             ctx.arc(80, 50, 10, 0, 2 * Math.PI);
             ctx.stroke();
-   
+
+            ctx.beginPath();
+            ctx.arc(100, 68, 10, 0, Math.PI);
+            ctx.stroke();
+
+            ctx.moveTo(89, 50); //sanka 
+            ctx.lineTo(105, 50);
+            ctx.stroke();
+
             ctx.beginPath();
             ctx.lineWidth = 5;
             ctx.moveTo(100, 95); //oikea käsi
@@ -100,6 +109,7 @@
         }
     </script>
 </head>
+
 <body onload="draw()">
     <audio src="Handel.mp3" id="id_music" preload="auto" loop></audio>
     <canvas id="myCanvas" width="900" height="820" style="border:2px solid #d3d3d3;">
