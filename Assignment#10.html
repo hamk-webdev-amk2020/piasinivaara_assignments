@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pia's Assingment#10</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        #myCanvasXX {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+
+    <script>
+        var playMode = false;
+        var can, ctx, counter = 0;
+        function draw() {
+            requestAnimationFrame(draw);
+            can = document.getElementById("myCanvas");
+            ctx = can.getContext("2d");
+
+            ctx.clearRect(0, 0, can.width, can.height);
+            ctx.save();
+            ctx.translate(450, 400);
+
+            ctx.rotate(counter * 0.046);
+            if (playMode) {
+                counter++;
+            }
+            ctx.beginPath();
+
+            var grd = ctx.createLinearGradient(50,60, 0, 80);
+            grd.addColorStop(0, "blue");
+            grd.addColorStop(1, "green");
+            ctx.fillStyle = grd;
+            ctx.moveTo(100, 95);
+            ctx.lineTo(0, 300);
+            ctx.lineTo(200, 300);
+            ctx.fill();
+
+            ctx.beginPath();
+
+            ctx.lineCap = "round"
+            ctx.lineWidth = 5; // pää
+            ctx.arc(100, 50, 40, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.lineWidth = 1;
+            ctx.arc(115, 50, 10, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(80, 50, 10, 0, 2 * Math.PI);
+            ctx.stroke();
+   
+            ctx.beginPath();
+            ctx.lineWidth = 5;
+            ctx.moveTo(100, 95); //oikea käsi
+            ctx.lineTo(180, 200);
+            ctx.stroke();
+
+            ctx.moveTo(100, 95); //vasen käsi
+            ctx.lineTo(10, 200);
+            ctx.stroke();
+
+
+            ctx.moveTo(150, 303); //jalka
+            ctx.lineTo(200, 400);
+            ctx.stroke();
+
+            ctx.moveTo(50, 303); //jalka
+            ctx.lineTo(50, 400);
+            ctx.stroke();
+            ctx.lineWidth = 5;
+            ctx.fillStyle = "red";
+            ctx.font = "20px Arial";
+            ctx.fillText("Tässon Pia", 150, 50);
+
+            ctx.restore();
+        }
+
+        function togglePlay() {
+            let button = document.getElementById("id_play_button");
+            let music = document.getElementById("id_music");
+            if (playMode) {
+                button.value = "    Play    ";
+                music.pause();
+            } else {
+                button.value = "    Pause   ";
+                music.playbackRate = 1;
+                music.play();
+            }
+            playMode = !playMode;
+        }
+    </script>
+</head>
+<body onload="draw()">
+    <audio src="Handel.mp3" id="id_music" preload="auto" loop></audio>
+    <canvas id="myCanvas" width="900" height="820" style="border:2px solid #d3d3d3;">
+        Your browser does not support the HTML canvas tag.</canvas>
+    <input type="button" value="    Play    " id="id_play_button" onclick="togglePlay()">
+</body>
+
+</html>
