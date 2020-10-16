@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+    <title>Pia's Assignment#11</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        
+        function validateForm(form) {
+           
+
+            $("#result-0").removeClass("ok not-ok");
+            $("#result-1").removeClass("ok not-ok");
+            $("#result-2").removeClass("ok not-ok");
+            $("#result-3").removeClass("ok not-ok");
+            $("#result-0").addClass("ok");
+            $("#result-1").addClass("ok");
+            $("#result-2").addClass("ok");
+            $("#result-3").addClass("ok");
+            
+
+
+            // jos annettu vastaus
+            var total = 0;
+            var ok = true;
+            if ($("input[name=question-0]:checked").length > 0) {
+                if ($("input[name=question-0]:checked").val() == "1") {
+                    $("#result-0").html("Your answer is correct");
+                    total++;
+                }
+                else {
+                    $("#result-0").html("Your answer is incorrect");
+                    $("#result-0").toggleClass("not-ok");
+                }
+            }
+          
+
+            if ($("input[name=question-1]:checked").length > 0 ) {
+                if ($("input[name=question-1]:checked").val() == "1") {
+                    $("#result-1").html("Your answer is correct");
+                    total++;
+                }
+                else {
+                    $("#result-1").html("Your answer is incorrect");
+                    $("#result-1").toggleClass("not-ok");
+                }
+            }
+           
+
+            if ($("input[name=question-2]:checked").length > 0) {
+                if ($("input[name=question-2]:checked").val() == "1") {
+                    $("#result-2").html("Your answer is correct");
+                    total++;
+                }
+                else {
+                    $("#result-2").html("Your answer is incorrect");
+                    $("#result-2").toggleClass("not-ok");
+                }
+            }
+           
+
+            if ($("input[name=question-3]:checked").length > 0) {
+                if ($("input[name=question-3]:checked").val() == "1") {
+                    $("#result-3").html("Your answer is correct");
+                    total++;
+                }
+                else {
+                    $("#result-3").html("Your answer is incorrect");
+                    $("#result-3").toggleClass("not-ok");
+                }
+            }
+            
+
+            $("#result").html("Result: You get " + total+ "/4 answers correct.");
+            
+
+            
+        }
+    </script>
+    <style>
+        #container {
+            padding: 6px;
+            max-width: 600px;
+        }
+
+        output.ok {
+            color: green;
+        }
+
+        output.not-ok {
+            color: red
+        }
+    </style>
+    <script>
+
+
+        var question1 = {
+            text: "1. Which sentence is correct?",
+            choices: [
+                { text: "She lives on an apartment.", points: 0 },
+                { text: "She lives to an apartment.", points: 0 },
+                { text: "She lives in an apartment.", points: 1 }
+            ],
+
+        };
+        var question2 = {
+            text: "2. Which sentence is correct?",
+            choices: [
+                { text: "We'll go to shopping soon.", points: 0 },
+                { text: "We'll go a shopping soon.", points: 0 },
+                { text: "We'll go shopping soon.", points: 1 },
+            ]
+        };
+        var question3 = {
+            text: "3. Which sentence is correct?",
+            choices: [
+                { text: "I am tired to working.", points: 0 },
+                { text: "I'm tiring of working.", points: 0 },
+                { text: "I'm tired of working.", points: 1 },
+            ]
+        };
+        var question4 = {
+            text: "4. Which sentence is correct?",
+            choices: [
+                { text: "How big your family?", points: 0 },
+                { text: "How many people are in your family?", points: 1 },
+                { text: "How many families do you have?", points: 0 },
+            ]
+        };
+        var questions = [question1, question2, question3, question4];
+    </script>
+</head>
+
+
+<body>
+    <div id="container">
+        <script>
+            let form = "<form>\n";
+            let questionN = 0;
+            for (let question of questions) {
+                form += "<p>" + question.text + "<\/p>";
+                form += '<fieldset data-role="controlgroup" data-type="vertical">\n';
+                let choiceN = 0;
+                for (let choice of question.choices) {
+                    form += '<input type="radio" id="question-' +
+                        questionN + '-' + choiceN + '"' +
+                        ' name="question-' + questionN + '" ' +
+                        'value="' + choice.points + '">';
+                    form += '<label for="question-' + questionN + '-' + choiceN + '">' +
+                        choice.text + '<\/label>\n';
+
+                    choiceN++;
+                }
+                form += '</fieldset>\n';
+                form += '<div><output class="ok" id="result-' + questionN + '""><\/output></div>';
+                questionN++;
+            }
+            form += '<input type="button" value="Validate" onclick="validateForm(document.myform)"\/>';
+            //form += '<label for="result">Result:&nbsp;</label>';
+            form += '<output id="result"></output>';
+
+
+            form += "<\/form>\n";
+            document.getElementById("container").innerHTML = form;
+        </script>
+    </div>
+
+
+
+</body>
+
+</html>
