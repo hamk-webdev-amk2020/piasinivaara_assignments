@@ -6,11 +6,9 @@
 
     <title>Pia's Assignment#12</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
     <script>
 
         $(function () {
@@ -76,21 +74,12 @@
                 showButtonPanel: true,
                 showWeek: true
             });
-        });
-
-
-
-        $(function () {
-            $("#age").slider({
-                range: "max",
-                min: 1,
-                max: 140,
-                value: 55,
-                slide: function (event, ui) {
-                    $("#amount").val(ui.value);
-                }
-            });
-            $("#amount").val($("#age").slider("value"));
+			
+			$( ".selector" ).slider({
+				max: 140
+			});
+       
+         
         });
 
 
@@ -103,6 +92,25 @@
             $("#sortable2").sortable();
             $("#sortable2").disableSelection();
         });
+		
+		$(function() {
+         
+            $( "#slider-2" ).slider({
+               
+               value:50,
+			   max:140,
+			   min:1,
+			   
+               slide: function( event, ui ) {
+                  $( "#minval" ).val( ui.value );
+               }	
+            });
+            $( "#minval" ).val( $( "#slider-2" ).slider( "value" ) );
+         });
+		 
+		 
+
+
 
     </script>
     <style>
@@ -130,13 +138,27 @@
             padding: 0;
             width: 60%;
         }
+		
+		#age {
+
+            width: 60%;
+        }
 
         #sortable li {
-            margin: 0 3px 3px 3px;
+            margin: 3px 3px 3px 3px;
             padding: 0.4em;
             padding-left: 1.5em;
             font-size: 1.4em;
-            height: 18px;
+            height: 25px;
+        }
+		
+		#list > div {
+            margin: 3px 3px 3px 3px;
+            padding: 0.4em;
+            padding-left: 1.5em;
+            
+            height: 25px;
+			line-height: 25px;
         }
 
         #sortable li span {
@@ -144,12 +166,7 @@
             margin-left: -1.3em;
         }
 
-        #sortable2 {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 60%;
-        }
+      
 
 
         .ui-li-thumb,
@@ -178,17 +195,19 @@
             <input type="text" id="datepicker">
         </div>
         <br>
-        <div id="age" class="ui-widget"><br>
-            <label for="amount">Age：</label>
-            <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
-        </div>
-        <br><br><br><br>
+		<div id = "slider-1" class="ui-widget">
+		<p>
+         <label for = "minval">Age:</label><input type = "text" id = "minval" >
+      </div>
+	  	  
+      <div id = "slider-2" class="ui-widget"></div>
+        <br><br>
 
         <div id="list" class="ui-widget">
             <ul id="sortable">
-                <li class="ui-state-default "><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><small><img
-                            src="./IMG_1.jpg" > Lapaset</small></li>
-                <li class="ui-state-default "><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><small><img
+                <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><small><img
+                            src="./IMG_1.jpg" class="ui-li-thumb ui-li-icon"> Lapaset</small></li>
+                <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><small><img
                             src="./IMG_2.jpg" class="ui-li-thumb ui-li-icon"> Sukat</small></li>
                 <li class="ui-state-default "><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><small><img
                             src="./IMG_3.jpg" class="ui-li-thumb ui-li-icon"> Sukat</small></li>
